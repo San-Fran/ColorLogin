@@ -1,0 +1,13 @@
+<div id="board">
+<div *ngFor="let row of array let i = index;" style=" text-align: center;">
+  <div *ngFor="let cell of row; let j = index;" style="display: inline-block;">
+   <div style="display: inline-block; 
+              height: 35px;width: 35px; font-size: 30px;margin: 5px 1px 5px 1px;
+              border-radius: 5px;"
+              [style.background]="getColor(i,j)"
+              class="unselectable">
+    {{ cell.emoji }}
+   </div>
+  </div>
+</div>
+</div>

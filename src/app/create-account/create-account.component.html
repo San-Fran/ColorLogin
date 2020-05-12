@@ -1,0 +1,117 @@
+<nav class="navbar navbar-dark bg-primary">
+  <!-- Navbar content -->
+  <a class="navbar-brand" href="#">CSC 250</a>
+</nav>
+
+<div>
+<div class="card" style="width: 90%; height:30rem; margin: 2em auto;">
+  <div class="card-body">
+    <h1 class="card-title" style="padding-left: 5%; margin-bottom: 2%;">Color Login</h1>
+    <div style ="display: flex">
+      <div style="display: inline-block; height: 100%; width: 30%;">
+        <button style="display: block;margin-bottom: 2em; width: 100%" type="button" class="btn btn-primary" (click)="displayPasswordSection(1)">Username</button>
+        <button style="display: block;margin-bottom: 2em; width: 100%;" type="button" class="btn btn-primary" (click)="displayPasswordSection(2)">Color</button>
+        <button style="display: block;margin-bottom: 2em; width: 100%;" type="button" class="btn btn-primary" (click)="displayPasswordSection(3)">Password Set</button>
+        <button style="display: block; width: 100%;" type="button" class="btn btn-primary" (click)="displayPasswordSection(4)">Finish</button>
+      </div>
+      <div style="display: inline-block;width: 70%; height: 100%;" [ngSwitch]="state">
+
+
+<!-- Enter username -->
+      <div class="input-group mb-3" style="width: 60%; margin: 3em auto;" *ngSwitchCase="1">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon3">Enter:</span>
+        </div>
+        <input (keyup)="setName($event.target.value)" type="text" class="form-control" id="Username" aria-describedby="basic-addon3">
+      </div>
+
+<!-- Pick a color -->
+      <div style="display:flex; justify-content: center; width: 100%;" *ngSwitchCase="2">
+        <div class="color" id="color1" (click)="select(1)">
+        </div>
+        <div class="color" id="color2" (click)="select(2)">
+        </div>
+        <div class="color" id="color3" (click)="select(3)">
+        </div>
+      </div>
+
+        <!-- Get all of the availale candidates -->
+        <div *ngSwitchCase="3" id="candidatesBoard">
+          <div *ngFor="let row of candidates let i = index;" style=" text-align: center; margin: 0 auto;">
+            <div *ngFor="let cell of row; let j = index;" style="display: inline-block;">
+             <div style="display: inline-block; 
+                        height: 35px;width: 35px; font-size: 30px;margin: 8px 8px 8px 8px;
+                        border-radius: 5px;"
+                        [style.background]="colorSelected()"
+                        class="unselectable" id="{{'emoji' + i + j}}" (click)="emojiSelected(i,j)">
+              {{ cell.emoji }}
+             </div>
+            </div>
+          </div>
+
+          <div style="text-align: center;">
+            <div id="selectedEmoji1" class="selectedEmojis" (click)="removeEmoji(1)" [style.background]="colorSelected()">
+              {{pickedEmoji1.emoji}}
+             </div>
+             <div id="selectedEmoji2" class="selectedEmojis" (click)="removeEmoji(2)" [style.background]="colorSelected()">
+              {{pickedEmoji2.emoji}}
+             </div>
+             <div id="selectedEmoji3" class="selectedEmojis" (click)="removeEmoji(3)" [style.background]="colorSelected()">
+              {{pickedEmoji3.emoji}}
+             </div>
+            <div id="selectedEmoji4" class="selectedEmojis" (click)="removeEmoji(4)" [style.background]="colorSelected()">
+              {{pickedEmoji4.emoji}}
+             </div>
+             <div id="selectedEmoji5" class="selectedEmojis" (click)="removeEmoji(5)" [style.background]="colorSelected()">
+              {{pickedEmoji5.emoji}}
+             </div>
+             <div id="selectedEmoji6" class="selectedEmojis" (click)="removeEmoji(6)" [style.background]="colorSelected()">
+              {{pickedEmoji6.emoji}}
+             </div>
+          </div>
+
+          </div>
+
+
+          <div *ngSwitchCase="4" style="text-align: ">
+            <div class="jumbotron" style="width: 80%; margin: 0 auto; height: 100%; padding-bottom: 2em;">
+              <h3>Username: {{ userName }}</h3>
+              <hr class="my-4">
+
+              <div>
+                <div id="selectedEmoji1" class="selectedEmojis" (click)="removeEmoji(1)" [style.background]="colorSelected()">
+              {{pickedEmoji1.emoji}}
+             </div>
+             <div id="selectedEmoji2" class="selectedEmojis" (click)="removeEmoji(2)" [style.background]="colorSelected()">
+              {{pickedEmoji2.emoji}}
+             </div>
+             <div id="selectedEmoji3" class="selectedEmojis" (click)="removeEmoji(3)" [style.background]="colorSelected()">
+              {{pickedEmoji3.emoji}}
+             </div>
+            <div id="selectedEmoji4" class="selectedEmojis" (click)="removeEmoji(4)" [style.background]="colorSelected()">
+              {{pickedEmoji4.emoji}}
+             </div>
+             <div id="selectedEmoji5" class="selectedEmojis" (click)="removeEmoji(5)" [style.background]="colorSelected()">
+              {{pickedEmoji5.emoji}}
+             </div>
+             <div id="selectedEmoji6" class="selectedEmojis" (click)="removeEmoji(6)" [style.background]="colorSelected()">
+              {{pickedEmoji6.emoji}}
+             </div>
+              </div>
+              <a (click)="goToLogin()" style="margin-top: 1em; color: white;" class="btn btn-primary btn-lg" role="button">Confirm</a>
+            </div>
+          </div>
+
+      </div>
+
+      </div>
+      <div style="padding-left: 60%;padding-top: 2em;" *ngIf="showButtons">
+        <button type="button" class="btn btn-primary" style="margin-right: 1em; width:" (click)="back()">Back</button>
+        <button type="button" class="btn btn-primary" (click)="next()">Next</button>
+      </div>
+  </div>
+</div>
+</div>
+
+
+
